@@ -38,3 +38,13 @@ output:
 client version: 1.20.2
 control plane version: 1.20.2
 data plane version: 1.20.2 (2 proxies)
+
+# Enable istio sidecar Injection
+kubectl label namespace default istio-injection=enabled
+output: namespace/default labeled
+# Install sample app
+kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+
+# check istio-injection
+istioctl analyze
+output: ✔ No validation issues found when analyzing namespace: default.
